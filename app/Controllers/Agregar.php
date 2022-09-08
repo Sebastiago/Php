@@ -1,0 +1,20 @@
+<?php
+
+namespace App\Controllers;
+
+class Agregar extends BaseController
+{
+    public function view($page = 'agregar')
+    {
+        if (! is_file(APPPATH . 'Views/page/' . $page . '.php')) {
+            // Whoops, we don't have a page for that!
+            throw new \CodeIgniter\Exceptions\PageNotFoundException($page);
+        }
+
+        $data['title'] = ucfirst($page); // Capitalize the first letter
+
+        return view('template/header', $data)
+            . view('page/' . $page)
+            . view('template/footer');
+    }
+}
